@@ -1,5 +1,6 @@
-FROM python:3-slim
-LABEL maintainer="Alexander Thamm GmbH <contact@alexanderthamm.com>"
+# FROM python:3-slim
+# LABEL maintainer="Alexander Thamm GmbH <contact@alexanderthamm.com>"
+FROM continuumio/anaconda3
 
 
 
