@@ -3,11 +3,13 @@ FROM continuumio/anaconda3
 
 RUN pip install mlflow==1.25.1
 ENV PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
-EXPOSE 5000s
 
-ENV MLFLOW_TRACKING_URI 172.30.197.229:3000
+EXPOSE 5000
+# ENV MLFLOW_TRACKING_URI 172.30.197.229:3000
 # ENV BACKEND_URI postgresql://mlflow_user:mlflow@localhost/mlflow_db --port 3000
 # ENV ARTIFACT_ROOT /mlflow/artifacts
+ENV BACKEND_URI ./mlruns
+ENV ARTIFACT_ROOT ./mlruns
 
-# WORKDIR /mlflow/
-# CMD mlflow server --backend-store-uri ${BACKEND_URI} --default-artifact-root ${ARTIFACT_ROOT} --host 0.0.0.0 --port 5000
+WORKDIR /mlflow/
+RUN mlflow server --backend-store-uri ${BACKEND_URI} --default-artifact-root ${ARTIFACT_ROOT} --host 0.0.0.0 --port 5000
